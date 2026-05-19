@@ -1,0 +1,150 @@
+🔧 CÓMO ANALIZAR LA CAPTURA WIRESHARK DESDE TU CASA
+====================================================
+
+📁 ARCHIVO DE CAPTURA:
+--------------------
+C:\Users\pabli\captura_cliente_pepephone.pcapng
+Duración: 30 segundos
+Tamaño: ~1.4 MB
+Fecha: 09/05/2026 - 11:55
+
+🚀 CÓMO ABRIR EL ARCHIVO:
+------------------------
+
+Opción 1: Interfaz Gráfica Wireshark
+1. Abrir: "C:\Program Files\Wireshark\wireshark.exe"
+2. File → Open → Seleccionar "captura_cliente_pepephone.pcapng"
+3. Analizar tráfico visualmente
+
+Opción 2: Línea de Comandos (TShark)
+"C:\Program Files\Wireshark\tshark.exe" -r "C:\Users\pabli\captura_cliente_pepephone.pcapng"
+
+📊 ANÁLISIS RÁPIDO COMANDOS ÚTILES:
+----------------------------------
+
+# Ver conversaciones IP (como se usó en auditoría):
+"C:\Program Files\Wireshark\tshark.exe" -r "captura_cliente_pepephone.pcapng" -q -z conv,ip
+
+# Ver protocolos más usados:
+"C:\Program Files\Wireshark\tshark.exe" -r "captura_cliente_pepephone.pcapng" -q -z io,phs
+
+# Ver endpoints (direcciones IP):
+"C:\Program Files\Wireshark\tshark.exe" -r "captura_cliente_pepephone.pcapng" -q -z conv,ip
+
+# Ver tráfico HTTP/HTTPS:
+"C:\Program Files\Wireshark\tshark.exe" -r "captura_cliente_pepephone.pcapng" -Y "http or https"
+
+# Ver tráfico de streaming:
+"C:\Program Files\Wireshark\tshark.exe" -r "captura_cliente_pepephone.pcapng" -Y "tcp.port == 443 or udp.port == 443"
+
+🎯 QUÉ BUSCAR EN EL TRÁFICO:
+---------------------------
+
+1. STREAMING DE ALTA CALIDAD:
+   - Grandes volúmenes de datos hacia IPs de Google/YouTube
+   - Conexiones HTTPS persistentes
+   - Tráfico constante sin pausas
+
+2. DISPOSITIVOS PROBLEMÁTICOS:
+   - IPs con mayor volumen de datos
+   - Conexiones múltiples a servicios streaming
+   - Actividad constante durante periodo capturado
+
+3. ANOMALÍAS DE RED:
+   - Conexiones a IPs desconocidas
+   - Tráfico HTTP no encriptado
+   - Puertos inusuales abiertos
+
+📈 FILTROS ÚTILES EN WIRESHARK:
+------------------------------
+
+# Ver solo tráfico de una IP específica:
+ip.addr == 192.168.1.47
+
+# Ver solo streaming YouTube:
+host 192.168.1.47 and tcp.port == 443
+
+# Ver tráfico por tamaño de paquetes:
+frame.len > 1000
+
+# Ver solo conversaciones TCP:
+tcp.flags.push == 1 and tcp.flags.ack == 1
+
+🔍 ANÁLISIS DE DISPOSITIVOS ESPECÍFICOS:
+---------------------------------------
+
+# Smart TV (192.168.1.47) - SOSPECHOSA:
+ip.addr == 192.168.1.47
+
+# Xiaomi/Streaming (192.168.1.86):
+ip.addr == 192.168.1.86
+
+# Consola Juegos (192.168.1.92):
+ip.addr == 192.168.1.92
+
+💡 INTERPRETACIÓN DE RESULTADOS:
+-------------------------------
+
+Volumen Alto (>1MB en 30 segundos):
+- Streaming 4K/1080p activo
+- Descargas grandes
+- Actualizaciones en progreso
+
+Conexiones Múltiples (>5 hacia mismo servicio):
+- Streaming paralelo
+- Dispositivo congestionado
+- Posible malware
+
+Tráfico Constante (sin pausas):
+- Streaming video/audio
+- Llamadas en curso
+- Transferencias archivos
+
+⚠️ ALERTAS AUTOMÁTICAS:
+----------------------
+
+# Crear alerta de alto consumo:
+Wireshark → Statistics → Conversations → IPv4
+Ordenar por "Bytes" → Revisar top 3
+
+# Detectar streaming no autorizado:
+Filter: tcp.dstport in {443,80} && frame.len > 1400
+
+# Ver actividad sospechosa:
+Statistics → Protocol Hierarchy
+Buscar protocolos inusuales
+
+📊 GENERAR REPORTES:
+------------------
+
+# Exportar estadísticas:
+File → Export Packet Dissections → As JSON
+File → Export Objects → HTTP
+
+# Guardar conversaciones específicas:
+Seleccionar paquetes → File → Export Specified Packets
+
+# Capturas de pantalla:
+Tools → Summary → Copiar información relevante
+
+🔄 PRÓXIMAS CAPTURAS FUTURAS:
+----------------------------
+
+Cuando vuelvas al cliente o accedas remotamente:
+
+1. Dejar PC capturando 5-10 minutos
+2. Comparar con esta captura baseline
+3. Identificar cambios en patrones consumo
+4. Ajustar QoS según nuevo análisis
+
+📞 CONTACTO PARA AYUDA:
+----------------------
+
+Si necesitas ayuda analizando capturas específicas:
+- Capturar escenario del problema
+- Enviar .pcapng para análisis
+- Comparar con baseline actual
+
+=================================================
+¡CAPTURA LISTA PARA ANÁLISIS PROFESIONAL!
+=================================================

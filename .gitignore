@@ -1,0 +1,43 @@
+# === DATOS SENSIBLES - NUNCA SUBIR ===
+CAPTURAS/
+DATOS_CLIENTES/
+REPORTES/
+
+# Datos de clientes
+*.pcap
+*.pcapng
+*credenciales*
+*password*
+*clave*
+*acceso*
+*DATOS_ACCESO*
+
+# Documentos con datos reales de clientes
+*RESUMEN_CLIENTE*
+*INSTRUCCIONES_AUDITORIA_CLIENTE*
+*PASO_A_PASO_ROUTER_PEPEPHONE*
+*PLAN_ACCESO_REMOTO_CLIENTE*
+*CONFIGURAR_ACCESO_REMOTO*
+*RED_MIWIFI_U4HX_ANALISIS*
+*DATOS_ACCESO*
+
+# Otros archivos con datos del cliente
+*INDICE_GENERAL*
+*RUTAS_ACTUALIZADAS*
+
+# Herramientas binarias
+HERRAMIENTAS/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+*.swp
+*.swo
+*~
+
+# Temporales
+*.tmp
+*.bak
